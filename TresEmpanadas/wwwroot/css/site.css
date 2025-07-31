@@ -20,3 +20,30 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.dark-theme {
+    background-color: #181a1b;
+    color: #e0e0e0;
+}
+
+.dark-theme .navbar,
+.dark-theme .footer,
+.dark-theme .bg-dark {
+    background-color: #23272b !important;
+}
+
+.dark-theme .nav-link,
+.dark-theme .navbar-brand,
+.dark-theme .footer,
+.dark-theme a,
+.dark-theme .text-light {
+    color: #e0e0e0 !important;
+}
+
+.dark-theme .border-top {
+    border-top: 1px solid #444 !important;
+}
+
+.dark-theme .box-shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.5) !important;
+}

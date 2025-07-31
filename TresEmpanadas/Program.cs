@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TresEmpanadas.Data;
+
 namespace TresEmpanadas
 {
     public class Program
@@ -8,6 +11,8 @@ namespace TresEmpanadas
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("TRESEMPANADAS")));
 
             var app = builder.Build();
 
