@@ -16,10 +16,13 @@ namespace TresEmpanadas
 
             var app = builder.Build();
 
-            using (var scope = app.Services.CreateScope())
+            if (app.Environment.IsProduction())
             {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.Migrate();
+                using (var scope = app.Services.CreateScope())
+                {
+                    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    context.Database.Migrate();
+                }
             }
 
             // Configure the HTTP request pipeline.
