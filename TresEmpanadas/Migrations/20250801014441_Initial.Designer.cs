@@ -12,8 +12,8 @@ using TresEmpanadas.Data;
 namespace TresEmpanadas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250731020915_AddIncome")]
-    partial class AddIncome
+    [Migration("20250801014441_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
