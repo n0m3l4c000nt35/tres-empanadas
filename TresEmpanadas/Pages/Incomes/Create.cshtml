@@ -2,48 +2,221 @@
 @model TresEmpanadas.Pages.Incomes.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nuevo ingreso";
 }
 
-<h1>Create</h1>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-<h4>Income</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Income.Amount" class="control-label"></label>
-                <input asp-for="Income.Amount" class="form-control" />
-                <span asp-validation-for="Income.Amount" class="text-danger"></span>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body, .modern-font {
+        font-family: 'Inter', Arial, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    .accent-indigo {
+        color: #3f51b5;
+    }
+    .btn-indigo {
+        background: #3f51b5;
+        color: #fff !important;
+        border: 2px solid #3f51b5;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-indigo:hover, .btn-indigo:focus {
+        background: transparent;
+        color: #3f51b5 !important;
+        border: 2px solid #3f51b5;
+    }
+    .btn-outline-indigo {
+        background: transparent;
+        color: #3f51b5 !important;
+        border: 2px solid #3f51b5;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-indigo:hover, .btn-outline-indigo:focus {
+        background: #3f51b5;
+        color: #fff !important;
+        border-color: #3f51b5;
+    }
+    .form-label {
+        color: #e0e0e0;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+    }
+    .form-control, .form-select {
+        background: transparent;
+        color: #e0e0e0;
+        border: none;
+        border-bottom: 2px solid #3f51b5;
+        border-radius: 0;
+        font-size: 1.08rem;
+        margin-bottom: 1.5rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-shadow: none;
+        outline: none;
+    }
+    .form-control:focus, .form-select:focus {
+        border-bottom: 2.5px solid #5c6bc0;
+        background: transparent;
+        color: #fff;
+        box-shadow: none;
+    }
+    .required-star {
+        color: #e53935;
+        font-size: 1.1em;
+        margin-right: 0.2em;
+    }
+    .text-danger {
+        color: #e53935 !important;
+    }
+    .form-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #3f51b5;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+        text-align: left;
+    }
+    .form-subtitle {
+        color: #b0b3b8;
+        font-size: 1.08rem;
+        margin-bottom: 2.2rem;
+        text-align: left;
+    }
+    .form-grid-modern {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 2.5rem;
+        max-width: 700px;
+        margin: 0 auto;
+        background: none;
+        padding: 0;
+    }
+    .form-grid-modern .full-width {
+        grid-column: 1 / -1;
+    }
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1.2rem;
+        margin-top: 2.5rem;
+    }
+    .back-link {
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2em;
+        font-size: 1.08rem;
+        border: none;
+        background: none;
+        padding: 0;
+    }
+    .back-link:hover, .back-link:focus {
+        color: #5c6bc0;
+        text-decoration: underline;
+    }
+    .form-bg-gradient {
+        min-height: 100vh;
+        min-width: 100vw;
+        width: 100vw;
+        /* height: 100vh; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: linear-gradient(120deg, #181a1b 60%, #3f51b5 100%);
+    }
+    .form-content-wrapper {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        /* Ajuste para evitar superposición con el footer */
+        padding-bottom: 120px;
+    }
+    .form-content-wrapper .container {
+        width: 100%;
+        max-width: 900px;
+        padding: 0 1rem;
+    }
+    @@media (max-width: 900px) {
+        .form-grid-modern {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+        .form-title, .form-subtitle {
+            text-align: center;
+        }
+        .form-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+            gap: 1.2rem;
+        }
+    }
+</style>
+
+<div class="form-bg-gradient"></div>
+<div class="form-content-wrapper modern-font">
+    <div class="container">
+        <div class="form-title">Nuevo ingreso</div>
+        <div class="form-subtitle">Completá los datos para registrar un nuevo ingreso.</div>
+        <form method="post" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="form-grid-modern">
+                <div>
+                    <label asp-for="Income.Amount" class="form-label">
+                        <span class="required-star">*</span>Monto
+                    </label>
+                    <input asp-for="Income.Amount" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="Income.Amount" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Income.Date" class="form-label">
+                        <span class="required-star">*</span>Fecha
+                    </label>
+                    <input asp-for="Income.Date" class="form-control" type="date" autocomplete="off" />
+                    <span asp-validation-for="Income.Date" class="text-danger"></span>
+                </div>
+                <div class="full-width">
+                    <label asp-for="Income.Description" class="form-label">Descripción</label>
+                    <input asp-for="Income.Description" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="Income.Description" class="text-danger"></span>
+                </div>
+                <div class="full-width">
+                    <label asp-for="Income.UserId" class="form-label">
+                        <span class="required-star">*</span>Usuario
+                    </label>
+                    <select asp-for="Income.UserId" class="form-select" asp-items="ViewBag.UserId"></select>
+                    <span asp-validation-for="Income.UserId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Income.Date" class="control-label"></label>
-                <input asp-for="Income.Date" class="form-control" />
-                <span asp-validation-for="Income.Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Income.Description" class="control-label"></label>
-                <input asp-for="Income.Description" class="form-control" />
-                <span asp-validation-for="Income.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Income.UserId" class="control-label"></label>
-                <select asp-for="Income.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-actions">
+                <a asp-page="Index" class="back-link">
+                    <i class="bi bi-arrow-left-short" style="font-size:1.5rem;"></i> Volver a la lista
+                </a>
+                <button type="submit" class="btn btn-indigo btn-lg">
+                    <i class="bi bi-check-circle me-2"></i>Guardar ingreso
+                </button>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

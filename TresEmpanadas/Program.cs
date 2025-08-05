@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TresEmpanadas.Data;
 
@@ -9,10 +10,13 @@ namespace TresEmpanadas
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(Environment.GetEnvironmentVariable("TRESEMPANADAS")));
 
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("TRESEMPANADAS")));
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -25,11 +29,9 @@ namespace TresEmpanadas
                 }
             }
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -38,6 +40,7 @@ namespace TresEmpanadas
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

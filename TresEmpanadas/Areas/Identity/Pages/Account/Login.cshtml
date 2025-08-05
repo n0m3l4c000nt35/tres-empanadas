@@ -1,0 +1,108 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Iniciar sesión";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<style>
+    .main-green-bg {
+        background: #181a1b;
+        color: #e0e0e0;
+    }
+    .accent-green {
+        color: #43a047;
+    }
+    .btn-green {
+        background: #43a047;
+        color: #fff !important;
+        border: 2px solid #43a047;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-green:hover, .btn-green:focus {
+        background: transparent;
+        color: #43a047 !important;
+        border: 2px solid #43a047;
+    }
+    .btn-outline-green {
+        background: transparent;
+        color: #43a047 !important;
+        border: 2px solid #43a047;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-green:hover, .btn-outline-green:focus {
+        background: #43a047;
+        color: #fff !important;
+        border-color: #43a047;
+    }
+    .card-green {
+        background: #23272b;
+        border: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 16px 0 rgba(67,160,71,0.10);
+    }
+    .section-title-green {
+        color: #43a047;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+</style>
+
+<div class="main-green-bg modern-font" style="min-height: 100vh; padding-top: 4rem;">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card card-green shadow-lg p-4" style="max-width: 400px; width: 100%;">
+            <div class="text-center mb-4">
+                <i class="bi bi-box-arrow-in-right" style="font-size: 2.5rem; color: #43a047;"></i>
+                <h2 class="section-title-green mt-2 mb-0">Iniciar sesión</h2>
+                <p class="text-muted mb-0">Accedé a tu cuenta</p>
+            </div>
+            <form id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label accent-green"></label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label accent-green"></label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="Input.RememberMe" class="form-check-input" />
+                    <label asp-for="Input.RememberMe" class="form-check-label">Recordarme</label>
+                </div>
+                <button id="login-submit" type="submit" class="btn btn-green w-100 mb-2">Ingresar</button>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-green w-100 mb-2">¿No tenés cuenta? Registrate</a>
+                <div class="d-flex justify-content-between mt-2">
+                    <a id="forgot-password" asp-page="./ForgotPassword" class="small accent-green">¿Olvidaste tu contraseña?</a>
+                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="small accent-green">Reenviar confirmación</a>
+                </div>
+            </form>
+            @if ((Model.ExternalLogins?.Count ?? 0) > 0)
+            {
+                <hr />
+                <div class="text-center mb-2">
+                    <span class="section-title-green" style="font-size:1.1rem;">O ingresá con</span>
+                </div>
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div class="d-flex flex-column gap-2">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit" class="btn btn-outline-green" name="provider" value="@provider.Name" title="Ingresar con @provider.DisplayName">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

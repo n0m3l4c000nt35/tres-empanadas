@@ -1,9 +1,142 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Tres Empanadas</h1>
+<!-- Google Fonts: Inter (moderna y legible) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    body, .modern-font {
+        font-family: 'Inter', Arial, sans-serif;
+    }
+    .main-dark-bg {
+        background: #181a1b;
+        color: #e0e0e0;
+    }
+    .accent {
+        color: #fbbf24;
+    }
+    .section-title {
+        color: #fbbf24;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .feature-icon {
+        font-size: 2rem;
+        color: #fbbf24;
+        margin-right: 0.75rem;
+        vertical-align: middle;
+    }
+    .info-box {
+        background: #23272b;
+        border-left: 4px solid #fbbf24;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.25);
+    }
+    a.btn-accent {
+        background: #fbbf24;
+        color: #181a1b !important;
+        border: 2px solid #fbbf24;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    a.btn-accent:hover, a.btn-accent:focus {
+        background: transparent;
+        color: #fbbf24 !important;
+        border: 2px solid #fbbf24;
+    }
+    a.btn-contrast-outline {
+        background: transparent;
+        color: #fbbf24 !important;
+        border: 2px solid #fbbf24;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    a.btn-contrast-outline:hover, a.btn-contrast-outline:focus {
+        background: #fbbf24;
+        color: #181a1b !important;
+        border-color: #fbbf24;
+    }
+    .link-light {
+        color: #fbbf24;
+        text-decoration: underline;
+    }
+    .link-light:hover {
+        color: #f59e42;
+    }
+</style>
+
+<div class="main-dark-bg modern-font" style="min-height: 100vh; padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="container">
+        <h1 class="display-2 fw-bold mb-4 accent text-center">Tres Empanadas</h1>
+        <p class="lead text-center mb-5" style="max-width: 700px; margin: 0 auto;">
+            Plataforma moderna para la gestión eficiente de ingresos y gastos.<br />
+            Visualizá, organizá y analizá tus finanzas personales o de tu emprendimiento con facilidad y seguridad.
+        </p>
+
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="feature-icon bi bi-cash-stack"></span>
+                    <span class="section-title">Control de Ingresos</span>
+                    <p class="mt-2 mb-0">
+                        Registrá y consultá todos tus ingresos de manera rápida. Filtrá por fecha, usuario o descripción para un seguimiento detallado.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="feature-icon bi bi-wallet2"></span>
+                    <span class="section-title">Gestión de Gastos</span>
+                    <p class="mt-2 mb-0">
+                        Mantené tus egresos bajo control. Clasificá gastos, visualizá tendencias y optimizá tus recursos.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="feature-icon bi bi-bar-chart-line"></span>
+                    <span class="section-title">Reportes Visuales</span>
+                    <p class="mt-2 mb-0">
+                        Accedé a reportes claros y gráficos interactivos para analizar tu situación financiera en tiempo real.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-auto mb-3 mb-md-0 d-grid gap-2">
+                <a href="/Incomes" class="btn btn-accent btn-lg">
+                    <i class="bi bi-cash-stack me-2"></i>Ingresos
+                </a>
+            </div>
+            <div class="col-12 col-md-auto d-grid gap-2">
+                <a href="/Expenses" class="btn btn-contrast-outline btn-lg">
+                    <i class="bi bi-wallet2 me-2"></i>Gastos
+                </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="info-box">
+                    <h2 class="section-title mb-3">¿Por qué elegir Tres Empanadas?</h2>
+                    <ul class="mb-0">
+                        <li>Interfaz intuitiva y adaptable a cualquier dispositivo.</li>
+                        <li>Seguridad y privacidad de tus datos garantizadas.</li>
+                        <li>Soporte para múltiples usuarios y roles.</li>
+                        <li>Exportación de datos a Excel y PDF.</li>
+                        <li>Actualizaciones constantes y soporte técnico.</li>
+                    </ul>
+                    <p class="mt-3 mb-0">
+                        Más información en nuestra <a href="#" class="link-light">documentación</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -2,53 +2,177 @@
 @model TresEmpanadas.Pages.Incomes.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ingresos";
 }
 
-<h1>Index</h1>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Income[0].Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Income[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Income[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Income[0].User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Income) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- mdbootstrap Indigo color palette: https://mdbootstrap.com/docs/standard/content-styles/colors/ -->
+<style>
+    body, .modern-font {
+        font-family: 'Inter', Arial, sans-serif;
+    }
+    .main-dark-bg {
+        background: #181a1b;
+        color: #e0e0e0;
+    }
+    .accent-indigo {
+        color: #3f51b5;
+    }
+    .btn-indigo {
+        background: #3f51b5;
+        color: #fff !important;
+        border: 2px solid #3f51b5;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-indigo:hover, .btn-indigo:focus {
+        background: transparent;
+        color: #3f51b5 !important;
+        border: 2px solid #3f51b5;
+    }
+    .btn-outline-indigo {
+        background: transparent;
+        color: #3f51b5 !important;
+        border: 2px solid #3f51b5;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-indigo:hover, .btn-outline-indigo:focus {
+        background: #3f51b5;
+        color: #fff !important;
+        border-color: #3f51b5;
+    }
+    .info-box-indigo {
+        background: #23272b;
+        border-left: 4px solid #3f51b5;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 16px 0 rgba(63,81,181,0.15);
+    }
+    .section-title-indigo {
+        color: #3f51b5;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .feature-icon-indigo {
+        font-size: 2rem;
+        color: #3f51b5;
+        margin-right: 0.75rem;
+        vertical-align: middle;
+    }
+    .table-dark-bg {
+        background: #23272b;
+        color: #e0e0e0;
+    }
+    .table thead th {
+        background: #23272b;
+        color: #3f51b5;
+        border-bottom: 2px solid #3f51b5;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+    .table-hover tbody tr:hover {
+        background: rgba(63,81,181,0.08);
+        color: #fff;
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    .table .fw-semibold {
+        font-weight: 600;
+        color: #3f51b5;
+    }
+    .card {
+        background: #23272b;
+        border: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 16px 0 rgba(63,81,181,0.10);
+    }
+    .card-body {
+        padding: 0;
+    }
+    @@media (max-width: 767.98px) {
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            align-items: stretch !important;
+            gap: 1.5rem;
+        }
+        .table-responsive {
+            border-radius: 0.75rem;
+            overflow-x: auto;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+        }
+    }
+</style>
+
+<div class="main-dark-bg modern-font" style="min-height: 100vh; padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <h1 class="fw-bold mb-0 accent-indigo">Ingresos</h1>
+            <a asp-page="Create" class="btn btn-indigo btn-lg d-flex align-items-center gap-2">
+                <i class="bi bi-plus-lg"></i> Agregar ingreso
+            </a>
+        </div>
+
+        <div class="info-box-indigo mb-4 d-flex align-items-center">
+            <span class="feature-icon-indigo bi bi-cash-stack"></span>
+            <span class="section-title-indigo">Visualizá y gestioná tus ingresos de manera eficiente y segura.</span>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0 table-dark-bg">
+                        <thead>
+                            <tr>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Usuario</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.Income != null && Model.Income.Any())
+                        {
+                            foreach (var item in Model.Income)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">@Html.DisplayFor(modelItem => item.Amount)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
+                                    <td class="text-end">
+                                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-indigo me-1" title="Editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Detalles">
+                                            <i class="bi bi-info-circle"></i>
+                                        </a>
+                                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No se encontraron ingresos.
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
