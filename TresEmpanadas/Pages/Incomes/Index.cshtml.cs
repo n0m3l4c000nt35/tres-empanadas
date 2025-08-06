@@ -21,10 +21,8 @@ namespace TresEmpanadas.Pages.Incomes
 
         public IList<Income> Income { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Income = await _context.Income
-                .Include(i => i.User).ToListAsync();
         }
     }
 }

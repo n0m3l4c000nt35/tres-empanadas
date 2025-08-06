@@ -21,10 +21,9 @@ namespace TresEmpanadas.Pages.Expenses
 
         public IList<Expense> Expense { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Expense = await _context.Expense
-                .Include(e => e.User).ToListAsync();
+            Expense = _context.Expense.ToList();
         }
     }
 }

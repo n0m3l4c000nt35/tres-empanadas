@@ -5,7 +5,6 @@
     ViewData["Title"] = "Nuevo ingreso";
 }
 
-<!-- Google Fonts: Inter -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -128,17 +127,6 @@
         color: #5c6bc0;
         text-decoration: underline;
     }
-    .form-bg-gradient {
-        min-height: 100vh;
-        min-width: 100vw;
-        width: 100vw;
-        /* height: 100vh; */
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        background: linear-gradient(120deg, #181a1b 60%, #3f51b5 100%);
-    }
     .form-content-wrapper {
         min-height: 100vh;
         min-height: 100dvh;
@@ -148,7 +136,6 @@
         align-items: center;
         position: relative;
         z-index: 1;
-        /* Ajuste para evitar superposición con el footer */
         padding-bottom: 120px;
     }
     .form-content-wrapper .container {
@@ -172,7 +159,6 @@
     }
 </style>
 
-<div class="form-bg-gradient"></div>
 <div class="form-content-wrapper modern-font">
     <div class="container">
         <div class="form-title">Nuevo ingreso</div>
@@ -198,13 +184,6 @@
                     <label asp-for="Income.Description" class="form-label">Descripción</label>
                     <input asp-for="Income.Description" class="form-control" autocomplete="off" />
                     <span asp-validation-for="Income.Description" class="text-danger"></span>
-                </div>
-                <div class="full-width">
-                    <label asp-for="Income.UserId" class="form-label">
-                        <span class="required-star">*</span>Usuario
-                    </label>
-                    <select asp-for="Income.UserId" class="form-select" asp-items="ViewBag.UserId"></select>
-                    <span asp-validation-for="Income.UserId" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-actions">

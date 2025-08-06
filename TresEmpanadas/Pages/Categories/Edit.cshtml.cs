@@ -36,7 +36,6 @@ namespace TresEmpanadas.Pages.Categories
                 return NotFound();
             }
             Category = category;
-           ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
             return Page();
         }
 

@@ -21,10 +21,9 @@ namespace TresEmpanadas.Pages.Categories
 
         public IList<Category> Category { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Category = await _context.Category
-                .Include(c => c.User).ToListAsync();
+            Category = _context.Category.ToList();
         }
     }
 }

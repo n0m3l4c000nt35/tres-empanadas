@@ -36,7 +36,6 @@ namespace TresEmpanadas.Pages.Incomes
                 return NotFound();
             }
             Income = income;
-           ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
             return Page();
         }
 

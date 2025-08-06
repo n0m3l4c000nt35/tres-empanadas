@@ -36,7 +36,6 @@ namespace TresEmpanadas.Pages.Expenses
                 return NotFound();
             }
             Expense = expense;
-           ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
             return Page();
         }
 

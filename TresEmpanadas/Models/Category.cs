@@ -8,11 +8,7 @@ namespace TresEmpanadas.Models
 
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        // User relationship
-        [Required]
-        public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

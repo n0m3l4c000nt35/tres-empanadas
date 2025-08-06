@@ -21,7 +21,6 @@ namespace TresEmpanadas.Pages.Incomes
 
         public IActionResult OnGet()
         {
-        ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Email");
             return Page();
         }
 

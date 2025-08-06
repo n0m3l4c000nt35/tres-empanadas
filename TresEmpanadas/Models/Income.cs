@@ -17,9 +17,5 @@ namespace TresEmpanadas.Models
         [StringLength(200, ErrorMessage = "Description cannot exceed 200 characters.")]
         public string? Description { get; set; }
 
-        // User relationship
-        [Required]
-        public int UserId { get; set; }
-        public User User { get; set; }
     }
 }
