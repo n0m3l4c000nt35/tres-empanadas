@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using TresEmpanadas.Data;
 
 namespace TresEmpanadas
@@ -40,6 +42,8 @@ namespace TresEmpanadas
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
                 }
+                builder.Services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo("/persistent/keys"));
             }
 
             if (!app.Environment.IsDevelopment())
