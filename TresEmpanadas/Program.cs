@@ -38,6 +38,9 @@ namespace TresEmpanadas
                 using (var scope = app.Services.CreateScope())
                 {
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    // Borra la base de datos existente
+                    context.Database.EnsureDeleted();
+                    // Aplica todas las migraciones (crea la base de datos desde cero)
                     context.Database.Migrate();
                 }
             }
