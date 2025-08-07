@@ -33,6 +33,13 @@ namespace TresEmpanadas
 
             builder.Services.AddRazorPages();
 
+            // Add this block BEFORE builder.Build()
+            if (builder.Environment.IsProduction())
+            {
+                builder.Services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo("/persistent/keys"));
+            }
+
             var app = builder.Build();
 
             if (app.Environment.IsProduction())
@@ -42,8 +49,6 @@ namespace TresEmpanadas
                     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
                 }
-                builder.Services.AddDataProtection()
-                    .PersistKeysToFileSystem(new DirectoryInfo("/persistent/keys"));
             }
 
             if (!app.Environment.IsDevelopment())
